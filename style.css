@@ -1,0 +1,164 @@
+/* --- CONFIGURACIÓN GENERAL Y VARIABLES DE COLOR --- */
+:root {
+    --primary-color: #29C7AC; /* Un verde menta brillante para acentos */
+    --background-dark: #1A2E35; /* El fondo verde oscuro principal */
+    --text-light: #F0F4F8;
+    --text-dark: #A0B1C0;
+    --card-background: #233A44; /* Un tono ligeramente más claro para la tarjeta de la imagen */
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- ENCABEZADO Y NAVEGACIÓN --- */
+.main-header {
+    padding: 1.5rem 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.main-nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav a.active,
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- SECCIÓN HERO --- */
+.hero-section {
+    padding: 4rem 0;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1.5rem 0;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 3rem;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 3rem;
+}
+
+.stat-item .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+.stat-item .stat-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 450px;
+    height: 550px;
+    background-image: url('https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); /* IMAGEN DE FONDO */
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    border-top-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* --- DISEÑO RESPONSIVO (PARA CELULARES) --- */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-stats {
+        justify-content: center;
+    }
+    .hero-image {
+        height: 400px;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+}

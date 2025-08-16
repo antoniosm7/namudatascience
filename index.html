@@ -1,67 +1,152 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAMU Data Science - From Data to Decisions</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
+    <title>NAMU Data Science</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #113F67; /* Azul Antártico */
+            color: #EAF0F6;
+        }
+        .lang-es {
+            display: none; /* Ocultar español por defecto */
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-
-    <header class="main-header">
-        <div class="container">
-            <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2ZM12 4.47L19.5 8.24V15.76L12 19.53L4.5 15.76V8.24L12 4.47Z" fill="#29C7ac"/>
-                    <path d="M5.5 8.79L12 12.51L18.5 8.79V11.21L12 14.93L5.5 11.21V8.79Z" fill="#29C7ac"/>
-                </svg>
-                <a href="#">NAMU Data Science</a>
+<body class="antialiased">
+    <div class="container mx-auto px-6 py-4">
+        <!-- Barra de Navegación -->
+        <header class="flex justify-between items-center">
+            <div class="flex items-center">
+                <!-- Logo -->
+                <img src="Tree Data Science.jpg" alt="NAMU Data Science Logo" class="h-10 w-10 mr-3" onerror="this.onerror=null;this.src='https://placehold.co/40x40/113F67/FFFFFF?text=N';">
+                <h1 class="text-2xl font-bold">NAMU Data Science</h1>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero-section">
-            <div class="container hero-container">
-                <div class="hero-text">
-                    <h1>Dream, analyze, succeed: Data to reality</h1>
-                    <p>Step into the portal of your data dreams. Explore unmatched insights, investment potential, and the pathway to your aspirations.</p>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">10+</span>
-                            <span class="stat-label">YEARS OF EXPERIENCE</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">700K+</span>
-                            <span class="stat-label">DATA POINTS ANALYZED</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">OUR SUCCESS RATE</span>
-                        </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-en">Home</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-es">Inicio</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-en">Services</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-es">Servicios</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-en">About</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-es">Nosotros</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-en">Contact</a>
+                <a href="#" class="hover:text-cyan-300 transition-colors duration-300 lang-es">Contacto</a>
+                <!-- Dropdown de Idioma -->
+                <div class="relative dropdown">
+                    <button class="hover:text-cyan-300 transition-colors duration-300 focus:outline-none lang-en">Language</button>
+                    <button class="hover:text-cyan-300 transition-colors duration-300 focus:outline-none lang-es">Idioma</button>
+                    <div class="dropdown-menu absolute right-0 mt-2 py-2 w-28 bg-white rounded-md shadow-xl z-20 hidden">
+                        <a href="#" onclick="setLanguage('en')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-500 hover:text-white">English</a>
+                        <a href="#" onclick="setLanguage('es')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-cyan-500 hover:text-white">Español</a>
                     </div>
                 </div>
-                <div class="hero-image-container">
-                    <div class="hero-image">
-                        </div>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </header>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-en">Home</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-es">Inicio</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-en">Services</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-es">Servicios</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-en">About</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-es">Nosotros</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-en">Contact</a>
+             <a href="#" class="block py-2 text-center hover:bg-blue-800 rounded lang-es">Contacto</a>
+             <hr class="my-2 border-gray-600">
+             <a href="#" onclick="setLanguage('en')" class="block py-2 text-center hover:bg-blue-800 rounded">English</a>
+             <a href="#" onclick="setLanguage('es')" class="block py-2 text-center hover:bg-blue-800 rounded">Español</a>
+        </div>
+
+        <!-- Sección Principal (Hero) -->
+        <main class="mt-16 md:mt-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <!-- Contenido en Inglés -->
+                    <h2 class="text-4xl md:text-6xl font-extrabold leading-tight lang-en">Data Roots: Growing Insights, Branching Success</h2>
+                    <p class="mt-6 text-lg md:text-xl text-cyan-100 lang-en">From Insight to Growth: Analyzing Data to Build a Future of Success</p>
+                    <!-- Contenido en Español -->
+                    <h2 class="text-4xl md:text-6xl font-extrabold leading-tight lang-es">Raíces de datos: Cultivando ideas, expandiendo el éxito</h2>
+                    <p class="mt-6 text-lg md:text-xl text-cyan-100 lang-es">Del conocimiento al crecimiento: Analizar datos para construir un futuro de éxito</p>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Data analysis dashboard" class="rounded-2xl shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/600x400/113F67/FFFFFF?text=Data';">
+                </div>
+            </div>
+        </main>
+
+        <!-- Sección de Estadísticas -->
+        <section class="mt-24 md:mt-32 pb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <p class="text-5xl font-bold text-cyan-300">1+</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-en">YEARS OF EXPERIENCE</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-es">AÑOS DE EXPERIENCIA</p>
+                </div>
+                <div>
+                    <p class="text-5xl font-bold text-cyan-300">200K+</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-en">DATA POINTS ANALYZED</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-es">PUNTOS DE DATOS ANALIZADOS</p>
+                </div>
+                <div>
+                    <p class="text-5xl font-bold text-cyan-300">97%</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-en">OUR SUCCESS RATE</p>
+                    <p class="mt-2 text-lg font-medium text-cyan-100 lang-es">NUESTRA TASA DE ÉXITO</p>
                 </div>
             </div>
         </section>
-    </main>
 
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-gray-700 mt-12">
+            <p>&copy; 2024 NAMU Data Science. All rights reserved.</p>
+            <a href="terms.html?lang=en" class="text-cyan-300 hover:underline mt-2 inline-block lang-en">Terms & Conditions</a>
+            <a href="terms.html?lang=es" class="text-cyan-300 hover:underline mt-2 inline-block lang-es">Términos y Condiciones</a>
+        </footer>
+    </div>
+
+    <script>
+        // Lógica para el menú móvil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Lógica para el cambio de idioma
+        function setLanguage(lang) {
+            // Ocultar todos los elementos de idioma
+            document.querySelectorAll('.lang-en, .lang-es').forEach(el => {
+                el.style.display = 'none';
+            });
+            // Mostrar solo los elementos del idioma seleccionado
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                el.style.display = 'block'; // Usamos 'block' para elementos de bloque como h2, p
+            });
+            // Para elementos 'inline' como los links de navegación, usamos 'inline-block' o 'inline'
+            document.querySelectorAll('nav .lang-' + lang + ', nav .dropdown button.lang-' + lang).forEach(el => {
+                el.style.display = 'inline';
+            });
+             // Actualizar el enlace de Términos y Condiciones
+            document.querySelector('footer a.lang-en').href = `terms.html?lang=en`;
+            document.querySelector('footer a.lang-es').href = `terms.html?lang=es`;
+        }
+
+        // Establecer el idioma inicial (por defecto inglés)
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('en');
+        });
+    </script>
 </body>
 </html>
